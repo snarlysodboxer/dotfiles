@@ -1,9 +1,9 @@
 [user]
-	name = Nathan Amick
-	email = github@nathanamick.com
+	name = david amick
+	email = github@davidamick.com
 
 [github]
-  user = namick
+  user = snarlysodboxer
 
 [core]
   whitespace=fix,-indent-with-non-tab,trailing-space,cr-at-eol
