@@ -1,6 +1,6 @@
-#!/bin/sh
+#!/bin/bash
 
-ruby symlink.rb
+ruby $HOME/.dotfiles/symlink.rb
 
 rm -rf $HOME/.vim/bundle
 mkdir $HOME/.vim/bundle
