@@ -7,9 +7,9 @@ mkdir $HOME/.vim/bundle
 git clone https://github.com/gmarik/vundle.git $HOME/.vim/bundle/vundle
 vim -u $HOME/.vimrc.bundles +BundleInstall +qa
 
-if test -f $HOME/.profile
+if test -f $HOME/.bashrc
 then
-  PROFILE_FILE="$HOME/.profile"
+  PROFILE_FILE="$HOME/.bashrc"
 else
   PROFILE_FILE="$HOME/.bash_profile"
 fi
