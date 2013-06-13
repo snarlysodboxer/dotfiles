@@ -19,4 +19,19 @@ then
   echo "alias tmux=\"TERM=screen-256color-bce tmux\"" >> $PROFILE_FILE
 fi
 
+if ! grep -q "export PS1=\"\\\u@\\\h:\\\w\\$ \"" $PROFILE_FILE
+then
+  echo "export PS1=\"\\u@\\h:\\w\$ \"" >> $PROFILE_FILE
+fi
+
+if ! grep -q "export HISTSIZE=10000" $PROFILE_FILE
+then
+  echo "export HISTSIZE=10000" >> $PROFILE_FILE
+fi
+
+if ! grep -q "export HISTFILESIZE=10000" $PROFILE_FILE
+then
+  echo "export HISTFILESIZE=10000" >> $PROFILE_FILE
+fi
+
 source $PROFILE_FILE
