@@ -1,10 +1,17 @@
 #!/bin/bash
 
+cd $HOME/.dotfiles && git pull && cd
 ruby $HOME/.dotfiles/symlink.rb
 
-rm -rf $HOME/.vim/bundle
-mkdir $HOME/.vim/bundle
-git clone https://github.com/gmarik/vundle.git $HOME/.vim/bundle/vundle
+#rm -rf $HOME/.vim/bundle
+mkdir -p $HOME/.vim/bundle
+
+if ! test -d $HOME/.vim/bundle/vundle
+then
+  git clone https://github.com/gmarik/vundle.git $HOME/.vim/bundle/vundle
+else
+  cd $HOME/.vim/bundle/vundle && git pull && cd
+fi
 vim -u $HOME/.vimrc.bundles +BundleInstall +qa
 
 if test -f $HOME/.bashrc
