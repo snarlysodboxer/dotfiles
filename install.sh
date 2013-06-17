@@ -41,4 +41,9 @@ then
   echo "export HISTFILESIZE=10000" >> $PROFILE_FILE
 fi
 
+if ! grep -q "export EDITOR=\$(which vim)" $PROFILE_FILE
+then
+  echo "export EDITOR=\$(which vim)" >> $PROFILE_FILE
+fi
+
 source $PROFILE_FILE
