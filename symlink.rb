@@ -12,3 +12,10 @@ dot_files.each do |filename|
   FileUtils.ln_s filename,sym_link
   puts "#{filename} -> #{sym_link}"
 end
+
+if File.directory? "#{home_dir}/.config/htop"
+  config_file = "#{home_dir}/.config/htop/htoprc"
+  FileUtils.rm(config_file) if File.exist?(config_file) || File.symlink?(config_file)
+  FileUtils.ln_s "#{home_dir}/.dotfiles/linked_files/htoprc",config_file
+  puts "#{home_dir}/.dotfiles/linked_files/htoprc -> #{config_file}"
+end
