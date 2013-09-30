@@ -41,6 +41,16 @@ then
   echo "export HISTFILESIZE=10000" >> $PROFILE_FILE
 fi
 
+if ! grep -q "export HISTTIMEFORMAT='%F %T '" $PROFILE_FILE
+then
+  echo "export HISTTIMEFORMAT='%F %T '" >> $PROFILE_FILE
+fi
+
+if ! grep -q "export PROMPT_COMMAND='history -a'" $PROFILE_FILE
+then
+  echo "export PROMPT_COMMAND='history -a'" >> $PROFILE_FILE
+fi
+
 if ! grep -q "export EDITOR=\$(which vim)" $PROFILE_FILE
 then
   echo "export EDITOR=\$(which vim)" >> $PROFILE_FILE
