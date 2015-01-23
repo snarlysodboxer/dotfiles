@@ -3,10 +3,10 @@ set nocompatible
 filetype off
 
 " Vundle help
-" :BundleList          - list configured bundles
-" :BundleInstall(!)    - install(update) bundles
-" :BundleSearch(!) foo - search(or refresh cache first) for foo
-" :BundleClean(!)      - confirm(or auto-approve) removal of unused bundles
+" :PluginList          - list configured bundles
+" :PluginInstall(!)    - install(update) bundles
+" :PluginSearch(!) foo - search(or refresh cache first) for foo
+" :PluginClean(!)      - confirm(or auto-approve) removal of unused bundles
 "
 " see :h vundle for more details or wiki for FAQ
 " NOTE: comments after Bundle command are not allowed..
@@ -14,25 +14,28 @@ filetype off
 set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
 
-Bundle 'gmarik/vundle'
-
-Bundle 'tpope/vim-endwise'
-Bundle 'tpope/vim-git'
-Bundle 'tpope/vim-markdown'
-Bundle 'tpope/vim-rails'
-Bundle 'tpope/vim-repeat'
-Bundle 'tpope/vim-surround'
-Bundle 'tpope/vim-vividchalk'
-Bundle 'tpope/vim-commentary'
-Bundle 'vim-ruby/vim-ruby'
-Bundle 'vim-scripts/jQuery'
-Bundle 'kchmck/vim-coffee-script'
-Bundle 'altercation/vim-colors-solarized'
-Bundle 'jpo/vim-railscasts-theme'
-Bundle 'commonthread/vim-vibrantink'
-Bundle 'wincent/Command-T'
-Bundle 'mileszs/ack.vim'
-Bundle 'scrooloose/syntastic'
-Bundle 'bitc/vim-bad-whitespace'
+" Plugin 'docker/docker' , {'rtp': '/contrib/syntax/vim/'}
+Plugin 'ekalinin/Dockerfile.vim'
+Plugin 'bogado/file-line'
+Plugin 'vim-scripts/Align'
+Plugin 'gmarik/vundle'
+Plugin 'mattn/webapi-vim'
+Plugin 'mattn/gist-vim'
+Plugin 'tpope/vim-endwise'
+Plugin 'tpope/vim-git'
+Plugin 'tpope/vim-markdown'
+Plugin 'tpope/vim-rails'
+Plugin 'tpope/vim-repeat'
+Plugin 'tpope/vim-surround'
+Plugin 'tpope/vim-commentary'
+Plugin 'vim-ruby/vim-ruby'
+Plugin 'vim-scripts/jQuery'
+Plugin 'kchmck/vim-coffee-script'
+Plugin 'jpo/vim-railscasts-theme'
+Plugin 'wincent/Command-T'
+Plugin 'mileszs/ack.vim'
+Plugin 'scrooloose/syntastic'
+Plugin 'bitc/vim-bad-whitespace'
+Plugin 'fatih/vim-go'
 
 filetype on

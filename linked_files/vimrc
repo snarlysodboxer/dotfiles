@@ -1,18 +1,18 @@
 set nocompatible
 
-set shell=/bin/sh
+set shell=/bin/bash
 
 if filereadable(expand("~/.vimrc.bundles"))
   source ~/.vimrc.bundles
 endif
 
-syntax on " Enable syntax highlighting
-filetype on " Enable filetype detection
+syntax          on " Enable syntax highlighting
+filetype        on " Enable filetype detection
 filetype indent on " Enable filetype-specific indenting
 filetype plugin on " Enable filetype-specific plugins
-set ic " Case insensitive search
-set hls " Highlight search
-set showmatch " Show matching brackets
+set ic             " Case insensitive search
+set hls            " Highlight search
+set showmatch      " Show matching brackets
 set expandtab
 set autoindent
 set tabstop=2
@@ -21,17 +21,25 @@ set softtabstop=2
 set number
 set title
 set backupdir=/tmp
-set t_Co=256
+"set t_Co=256
 set background=dark
-"colorscheme vibrantink
 colorscheme railscasts
-"colorscheme vividchalk
-"colorscheme solarized
+
+" Golang stuff
+let g:go_highlight_functions = 1
+let g:go_highlight_methods   = 1
+let g:go_highlight_structs   = 1
+au BufNewFile,BufRead *.go setlocal noet ts=4 sw=4 sts=4
+au FileType go nmap <Leader>r <Plug>(go-run)
+autocmd FileType go set commentstring=//\ %s
+au FileType go nmap <Leader>ds <Plug>(go-def-split)
+au FileType go nmap <Leader>dv <Plug>(go-def-vertical)
+au FileType go nmap <Leader>dt <Plug>(go-def-tab)
 
 " Allow backspacing over everything in insert mode
 set backspace=indent,eol,start
 
-" List all matches without completing, then each full match 
+" List all matches without completing, then each full match
 set wildmode=longest,list
 " Make tab completion for files/buffers act like bash
 set wildmenu
@@ -92,6 +100,11 @@ function! InsertTabWrapper()
 endfunction
 inoremap <tab> <c-r>=InsertTabWrapper()<cr>
 inoremap <s-tab> <c-n>
+
+"Auto commands
+au BufRead,BufNewFile {Gemfile,Rakefile,Capfile,*.rake,config.ru}     set ft=ruby
+au BufRead,BufNewFile {*.md,*.mkd,*.markdown}                         set ft=markdown
+au BufRead,BufNewFile {COMMIT_EDITMSG}                                set ft=gitcommit
 
 " rspec mappings
 map <Leader>a :call RunAllSpecs()<CR>
@@ -178,3 +191,6 @@ function! s:QuickfixFilenames()
   endfor
   return join(map(values(buffer_numbers), 'fnameescape(v:val)'))
 endfunction
+
+syntax match nonascii "[^\x00-\x7F]"
+highlight nonascii guibg=Red ctermbg=124
