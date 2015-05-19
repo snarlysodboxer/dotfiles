@@ -1,7 +1,17 @@
 #!/bin/bash
 
 cd $HOME/.dotfiles && git pull && cd
-ruby $HOME/.dotfiles/symlink.rb
+
+files=`find $HOME/.dotfiles/linked -type f -printf '%P\n'`
+for file in $files; do
+  if [ -f $HOME/\.$file ]; then
+    mv $HOME/\.$file $HOME/\."$file"_bak
+  fi
+  if [ -L $HOME/\.$file ]; then
+    rm $HOME/\.$file
+  fi
+  ln -s $HOME/.dotfiles/linked/$file $HOME/\.$file
+done
 
 #rm -rf $HOME/.vim/bundle
 mkdir -p $HOME/.vim/bundle
