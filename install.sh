@@ -5,7 +5,11 @@ cd $HOME/.dotfiles && git pull && cd
 files=`find ./.dotfiles/linked -type f | cut -d '/' -f 4-`
 for file in $files; do
   if [ -f $HOME/\.$file ]; then
-    mv $HOME/\.$file $HOME/\."$file"_bak
+    if [ -L $HOME/\.$file ]; then
+      rm $HOME/\.$file
+    else
+      mv $HOME/\.$file $HOME/\."$file"_bak
+    fi
   fi
   if [ -L $HOME/\.$file ]; then
     rm $HOME/\.$file
