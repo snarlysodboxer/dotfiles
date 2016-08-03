@@ -17,7 +17,7 @@ for file in $files; do
   ln -s $HOME/.dotfiles/linked/$file $HOME/\.$file
 done
 
-#rm -rf $HOME/.vim/bundle
+rm -rf $HOME/.vim/bundle
 mkdir -p $HOME/.vim/bundle
 
 if ! test -d $HOME/.vim/bundle/vundle
@@ -26,7 +26,7 @@ then
 else
   cd $HOME/.vim/bundle/vundle && git pull && cd
 fi
-vim -u $HOME/.vimrc.bundles +BundleInstall +qa
+vim -u $HOME/.vimrc.bundles +BundleInstall +GoInstallBinaries +qa
 
 if test -f $HOME/.bashrc
 then

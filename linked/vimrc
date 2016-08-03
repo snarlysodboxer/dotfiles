@@ -196,3 +196,4 @@ endfunction
 
 syntax match nonascii "[^\x00-\x7F]"
 highlight nonascii guibg=Red ctermbg=124
+
