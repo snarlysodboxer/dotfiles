@@ -197,5 +197,7 @@ endfunction
 syntax match nonascii "[^\x00-\x7F]"
 highlight nonascii guibg=Red ctermbg=124
 
+" Include dashes when word searching
+set isk+=-
 " Toggle include dashes when word searching
 nnoremap <expr> <leader>- ':set isk' . (index(split(&isk, ','), '-') == -1 ? '+' : '-') . '=-<cr>:set iskeyword?<cr>'
