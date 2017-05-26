@@ -13,11 +13,18 @@ filetype plugin on " Enable filetype-specific plugins
 set ic             " Case insensitive search
 set hls            " Highlight search
 set showmatch      " Show matching brackets
-set expandtab
-set autoindent
-set tabstop=2
+
+" Uncomment to use tabs instead of spaces
+" set shiftwidth=8
+" set softtabstop=0
+" set noexpandtab
+" Two spaces instead of tabs:
 set shiftwidth=2
 set softtabstop=2
+set expandtab
+
+set autoindent
+set tabstop=2
 set number
 set title
 set backupdir=/tmp
@@ -201,3 +208,4 @@ highlight nonascii guibg=Red ctermbg=124
 set isk+=-
 " Toggle include dashes when word searching
 nnoremap <expr> <leader>- ':set isk' . (index(split(&isk, ','), '-') == -1 ? '+' : '-') . '=-<cr>:set iskeyword?<cr>'
+
