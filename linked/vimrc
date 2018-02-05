@@ -14,36 +14,27 @@ set ic             " Case insensitive search
 set hls            " Highlight search
 set showmatch      " Show matching brackets
 
-" Uncomment to use tabs instead of spaces
+" Uncomment to use tabs instead of spaces:
 " set shiftwidth=8
 " set softtabstop=0
 " set noexpandtab
 " Two spaces instead of tabs:
-set shiftwidth=2
-set softtabstop=2
+" set shiftwidth=2
+" set softtabstop=2
+" set expandtab
+" Four spaces instead of tabs:
+set shiftwidth=4
+set softtabstop=4
 set expandtab
 
 set autoindent
-set tabstop=2
+set tabstop=4
 set number
 set title
 set backupdir=/tmp
 "set t_Co=256
 set background=dark
 colorscheme railscasts
-
-" Golang stuff
-let g:go_highlight_functions = 1
-let g:go_highlight_methods   = 1
-let g:go_highlight_structs   = 1
-au BufNewFile,BufRead *.go setlocal noet ts=4 sw=4 sts=4
-au FileType go nmap <Leader>r <Plug>(go-run)
-au FileType go nmap <leader>b <Plug>(go-build)
-au FileType go nmap <leader>t <Plug>(go-test)
-autocmd FileType go set commentstring=//\ %s
-au FileType go nmap <Leader>ds <Plug>(go-def-split)
-au FileType go nmap <Leader>dv <Plug>(go-def-vertical)
-au FileType go nmap <Leader>dt <Plug>(go-def-tab)
 
 " Allow backspacing over everything in insert mode
 set backspace=indent,eol,start
@@ -110,97 +101,6 @@ endfunction
 inoremap <tab> <c-r>=InsertTabWrapper()<cr>
 inoremap <s-tab> <c-n>
 
-"Auto commands
-au BufRead,BufNewFile {Gemfile,Rakefile,Capfile,*.rake,config.ru}     set ft=ruby
-au BufRead,BufNewFile {*.md,*.mkd,*.markdown}                         set ft=markdown
-au BufRead,BufNewFile {COMMIT_EDITMSG}                                set ft=gitcommit
-
-" rspec mappings
-map <Leader>a :call RunAllSpecs()<CR>
-map <Leader>t :call RunCurrentSpecFile()<CR>
-map <Leader>s :call RunNearestSpec()<CR>
-map <Leader>l :call RunLastSpec()<CR>
-
-function! RunAllSpecs()
-  let l:command = "rspec -fd spec"
-  call RunSpecs(l:command)
-endfunction
-
-function! RunCurrentSpecFile()
-  if InSpecFile()
-    let l:command = "rspec -fd " . @%
-    call SetLastSpecCommand(l:command)
-    call RunSpecs(l:command)
-  endif
-endfunction
-
-function! RunNearestSpec()
-  if InSpecFile()
-    let l:command = "rspec -fd " . " -l " . line(".") . " "  . @%
-    call SetLastSpecCommand(l:command)
-    call RunSpecs(l:command)
-  endif
-endfunction
-
-function! RunLastSpec()
-  if exists("t:last_spec_command")
-    call RunSpecs(t:last_spec_command)
-  endif
-endfunction
-
-function! InSpecFile()
-  return match(expand("%"), "_spec.rb$") != -1
-endfunction
-
-function! SetLastSpecCommand(command)
-  let t:last_spec_command = a:command
-endfunction
-
-function! RunSpecs(command)
-  execute ":w\|!clear && echo " . a:command . " && echo && " . a:command
-endfunction
-
-function! s:ChangeHashSyntax(line1,line2)
-    let l:save_cursor = getpos(".")
-    silent! execute ':' . a:line1 . ',' . a:line2 . 's/:\([a-z0-9_]\+\)\s\+=>/\1:/g'
-    call setpos('.', l:save_cursor)
-endfunction
-
-command! -range=% ChangeHashSyntax call <SID>ChangeHashSyntax(<line1>,<line2>)
-
-command! -nargs=0 -bar Qargs execute 'args ' . s:QuickfixFilenames()
-
-" Contributed by "ib."
-" http://stackoverflow.com/questions/5686206/search-replace-using-quickfix-list-in-vim#comment8286582_5686810
-command! -nargs=1 -complete=command -bang Qdo call s:Qdo(<q-bang>, <q-args>)
-
-function! s:Qdo(bang, command)
-  if exists('w:quickfix_title')
-    let in_quickfix_window = 1
-    cclose
-  else
-    let in_quickfix_window = 0
-  endif
-
-  arglocal
-  exe 'args '.s:QuickfixFilenames()
-  exe 'argdo'.a:bang.' '.a:command
-  argglobal
-
-  if in_quickfix_window
-    copen
-  endif
-endfunction
-
-function! s:QuickfixFilenames()
-  " Building a hash ensures we get each buffer only once
-  let buffer_numbers = {}
-  for quickfix_item in getqflist()
-    let buffer_numbers[quickfix_item['bufnr']] = bufname(quickfix_item['bufnr'])
-  endfor
-  return join(map(values(buffer_numbers), 'fnameescape(v:val)'))
-endfunction
-
 syntax match nonascii "[^\x00-\x7F]"
 highlight nonascii guibg=Red ctermbg=124
 
@@ -208,4 +108,14 @@ highlight nonascii guibg=Red ctermbg=124
 set isk+=-
 " Toggle include dashes when word searching
 nnoremap <expr> <leader>- ':set isk' . (index(split(&isk, ','), '-') == -1 ? '+' : '-') . '=-<cr>:set iskeyword?<cr>'
+
+" Add spaces after comment delimiters by default
+let g:NERDSpaceDelims = 1
+
+" Use compact syntax for prettified multi-line comments
+let g:NERDCompactSexyComs = 1
+
+" Align line-wise comment delimiters flush left instead of following code indentation
+let g:NERDDefaultAlign = 'left'
+
 
