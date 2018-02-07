@@ -19,5 +19,6 @@ Plugin 'scrooloose/nerdcommenter'
 Plugin 'bitc/vim-bad-whitespace'
 Plugin 'fatih/vim-go'
 Plugin 'sheerun/vim-polyglot'
+Plugin 'joonty/vdebug'
 
 filetype on
