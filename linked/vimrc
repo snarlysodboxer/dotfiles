@@ -118,4 +118,11 @@ let g:NERDCompactSexyComs = 1
 " Align line-wise comment delimiters flush left instead of following code indentation
 let g:NERDDefaultAlign = 'left'
 
+" \ 'path_maps': {'/path/to/code/in/container': '/path/to/code/on/host'},
+let g:vdebug_options = {
+\ 'break_on_open': 1,
+\ 'port': '9005',
+\ 'server': '',
+\ 'watch_window_style': 'compact'
+\ }
 
