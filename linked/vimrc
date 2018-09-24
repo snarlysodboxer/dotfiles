@@ -34,7 +34,19 @@ set title
 set backupdir=/tmp
 "set t_Co=256
 set background=dark
-colorscheme railscasts
+" colorscheme railscasts
+" colorscheme material
+" colorscheme antares
+" colorscheme VIvid
+" colorscheme enigma
+" colorscheme alduin
+" colorscheme strange
+" colorscheme znake
+" colorscheme leo
+" colorscheme lettuce
+colorscheme pride
+" colorscheme babymate256
+
 
 " Allow backspacing over everything in insert mode
 set backspace=indent,eol,start

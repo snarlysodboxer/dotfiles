@@ -20,5 +20,15 @@ Plugin 'bitc/vim-bad-whitespace'
 Plugin 'fatih/vim-go'
 Plugin 'sheerun/vim-polyglot'
 Plugin 'joonty/vdebug'
+Plugin 'leafgarland/typescript-vim'
+Plugin 'Quramy/vim-js-pretty-template'
+Plugin 'jason0x43/vim-js-indent'
+Plugin 'HerringtonDarkholme/yats.vim'
+Plugin 'mhartington/nvim-typescript'
+Plugin 'Shougo/deoplete.nvim'
+Plugin 'Shougo/denite.nvim'
+Plugin 'w0rp/ale'
+Plugin 'flazz/vim-colorschemes'
+
 
 filetype on

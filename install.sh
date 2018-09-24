@@ -2,22 +2,24 @@
 
 cd $HOME/.dotfiles && git pull && cd
 
-files=`find ./.dotfiles/linked -type f | cut -d '/' -f 4-`
-for file in $files; do
-  if [ -f $HOME/\.$file ]; then
-    if [ -L $HOME/\.$file ]; then
-      rm $HOME/\.$file
+mkdir -p $HOME/.config/nvim $HOME/.config/htop
+
+FILE_PATHS=`find $HOME/.dotfiles/linked -type f | cut -d '/' -f 6-`
+for FILE_PATH in $FILE_PATHS; do
+  if [ -f $HOME/\.$FILE_PATH ]; then
+    if [ -L $HOME/\.$FILE_PATH ]; then
+      rm $HOME/\.$FILE_PATH
     else
-      mv $HOME/\.$file $HOME/\."$file"_bak
+      mv $HOME/\.$FILE_PATH $HOME/\."$FILE_PATH"_bak
     fi
   fi
-  if [ -L $HOME/\.$file ]; then
-    rm $HOME/\.$file
+  if [ -L $HOME/\.$FILE_PATH ]; then
+    rm $HOME/\.$FILE_PATH
   fi
-  ln -s $HOME/.dotfiles/linked/$file $HOME/\.$file
+  ln -s $HOME/.dotfiles/linked/$FILE_PATH $HOME/\.$FILE_PATH
 done
 
-rm -rf $HOME/.vim/bundle
+# rm -rf $HOME/.vim/bundle
 mkdir -p $HOME/.vim/bundle
 
 if ! test -d $HOME/.vim/bundle/vundle
