@@ -35,7 +35,7 @@ set backupdir=/tmp
 "set t_Co=256
 set background=dark
 " colorscheme railscasts
-" colorscheme material
+colorscheme material
 " colorscheme antares
 " colorscheme VIvid
 " colorscheme enigma
@@ -44,7 +44,7 @@ set background=dark
 " colorscheme znake
 " colorscheme leo
 " colorscheme lettuce
-colorscheme pride
+" colorscheme pride
 " colorscheme babymate256
 
 
@@ -131,10 +131,10 @@ let g:NERDCompactSexyComs = 1
 let g:NERDDefaultAlign = 'left'
 
 " \ 'path_maps': {'/path/to/code/in/container': '/path/to/code/on/host'},
-let g:vdebug_options = {
-\ 'break_on_open': 1,
-\ 'port': '9005',
-\ 'server': '',
-\ 'watch_window_style': 'compact'
-\ }
+" let g:vdebug_options = {
+" \ 'break_on_open': 1,
+" \ 'port': '9005',
+" \ 'server': '',
+" \ 'watch_window_style': 'compact'
+" \ }
 
