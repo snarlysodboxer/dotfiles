@@ -86,4 +86,17 @@ then
   echo "export EDITOR=\$(which nvim)" >> $PROFILE_FILE
 fi
 
+# Other
+if ! grep -q "/usr/local/etc/profile.d/bash_completion.sh" $PROFILE_FILE
+then
+  echo -e "\n# OS X\n[[ -r \"/usr/local/etc/profile.d/bash_completion.sh\" ]] && . \"/usr/local/etc/profile.d/bash_completion.sh\"" >> $PROFILE_FILE
+fi
+
+if ! grep -q "kubectl completion bash" $PROFILE_FILE
+then
+  echo -e "\n# Linux\nsource <(kubectl completion bash)\n" >> $PROFILE_FILE
+fi
+
+
+# Load the changes to the current shell
 source $PROFILE_FILE
