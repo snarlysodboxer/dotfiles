@@ -30,6 +30,7 @@ else
 fi
 vim -u $HOME/.vimrc.bundles +BundleInstall +GoInstallBinaries +qa
 
+## Determine bash profile file path
 if test -f $HOME/.bashrc
 then
   PROFILE_FILE="$HOME/.bashrc"
@@ -37,11 +38,24 @@ else
   PROFILE_FILE="$HOME/.bash_profile"
 fi
 
+## Aliases
 if ! grep -q "alias tmux=\"TERM=screen-256color-bce tmux\"" $PROFILE_FILE
 then
   echo "alias tmux=\"TERM=screen-256color-bce tmux\"" >> $PROFILE_FILE
 fi
 
+if ! grep -q "alias vi=\"nvim\"" $PROFILE_FILE
+then
+  echo "alias vi=\"nvim\"" >> $PROFILE_FILE
+fi
+
+if ! grep -q "alias vim=\"nvim\"" $PROFILE_FILE
+then
+  echo "alias vim=\"nvim\"" >> $PROFILE_FILE
+fi
+
+
+## Env vars
 if ! grep -q "export PS1=\"\\\u@\\\h:\\\w\\$ \"" $PROFILE_FILE
 then
   echo "export PS1=\"\\u@\\h:\\w\$ \"" >> $PROFILE_FILE
@@ -62,14 +76,14 @@ then
   echo "export HISTTIMEFORMAT='%F %T '" >> $PROFILE_FILE
 fi
 
-if ! grep -q "export PROMPT_COMMAND='history -a'" $PROFILE_FILE
+if ! grep -q "export PROMPT_COMMAND='history -a; history -c; history -r'" $PROFILE_FILE
 then
-  echo "export PROMPT_COMMAND='history -a'" >> $PROFILE_FILE
+  echo "export PROMPT_COMMAND='history -a; history -c; history -r'" >> $PROFILE_FILE
 fi
 
-if ! grep -q "export EDITOR=\$(which vim)" $PROFILE_FILE
+if ! grep -q "export EDITOR=\$(which nvim)" $PROFILE_FILE
 then
-  echo "export EDITOR=\$(which vim)" >> $PROFILE_FILE
+  echo "export EDITOR=\$(which nvim)" >> $PROFILE_FILE
 fi
 
 source $PROFILE_FILE
