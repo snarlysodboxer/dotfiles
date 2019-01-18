@@ -76,9 +76,9 @@ then
   echo "export HISTTIMEFORMAT='%F %T '" >> $PROFILE_FILE
 fi
 
-if ! grep -q "export PROMPT_COMMAND='history -a; history -c; history -r'" $PROFILE_FILE
+if ! grep -q "export PROMPT_COMMAND='history -a; history -c; history -r; eval \"\$(tmux show-environment -s SSH_AUTH_SOCK)\"'" $PROFILE_FILE
 then
-  echo "export PROMPT_COMMAND='history -a; history -c; history -r'" >> $PROFILE_FILE
+  echo "export PROMPT_COMMAND='history -a; history -c; history -r; eval \"\$(tmux show-environment -s SSH_AUTH_SOCK)\"'" >> $PROFILE_FILE
 fi
 
 if ! grep -q "export EDITOR=\$(which nvim)" $PROFILE_FILE
