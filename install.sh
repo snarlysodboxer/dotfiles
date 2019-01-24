@@ -76,9 +76,9 @@ then
   echo "export HISTTIMEFORMAT='%F %T '" >> $PROFILE_FILE
 fi
 
-if ! grep -q "export PROMPT_COMMAND='history -a; history -c; history -r; eval \"\$(tmux show-environment -s SSH_AUTH_SOCK)\"'" $PROFILE_FILE
+if ! grep -q "export PROMPT_COMMAND='history -a; history -c; history -r; reset_ssh'" $PROFILE_FILE
 then
-  echo "export PROMPT_COMMAND='history -a; history -c; history -r; eval \"\$(tmux show-environment -s SSH_AUTH_SOCK)\"'" >> $PROFILE_FILE
+  echo "export PROMPT_COMMAND='history -a; history -c; history -r; reset_ssh'" >> $PROFILE_FILE
 fi
 
 if ! grep -q "export EDITOR=\$(which nvim)" $PROFILE_FILE
@@ -95,6 +95,15 @@ fi
 if ! grep -q "kubectl completion bash" $PROFILE_FILE
 then
   echo -e "\n# Linux\nsource <(kubectl completion bash)\n" >> $PROFILE_FILE
+fi
+
+if ! grep -q "reset_ssh () {" $PROFILE_FILE
+then
+    echo "reset_ssh () {
+    if SOCKET=\$(getSSH_AUTH_SOCK); then
+        export SSH_AUTH_SOCK=\"\$SOCKET\"
+    fi
+}" >> $PROFILE_FILE
 fi
 
 
