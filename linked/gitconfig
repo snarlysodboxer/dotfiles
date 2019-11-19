@@ -31,25 +31,58 @@
   branch = green
 
 [merge]
-  tool = opendiff
+  tool = vimdiff
   defaultToUpstream = true
   conflictStyle=diff3
 
 [alias]
   s = status
-  g = log --graph --decorate --pretty=oneline --abbrev-commit
-  ga = log --graph --decorate --pretty=oneline --abbrev-commit --all
-  ci = commit
   br = branch
   co = checkout
-  df = diff
-  dc = diff --cached
-  ls = ls-files
-  ign = ls-files -o -i --exclude-standard
-  ff = merge --ff-only
+
+  #=== History Inspection ===>
+
+  # log - show commit log using graph
+  l = "log --graph --pretty='tformat:%C(cyan)%h %C(bold yellow)%d %C(bold white)%s%C(reset) %C(green)%ar %C(bold blue)%an'"
+
+  # log-all - same as above, but for all branches
+  la = "!git l --all"
+
+  # log-local - view local commits not pushed
+  ll = "!git l origin/master..HEAD"
+
+  # local-diff - local commits not pushed
+  ld = "!git l -p origin/master..HEAD"
+
+  # last-commit - Show last commit patch
+  lc = "log -p HEAD^..HEAD"
+
+  # last-commit-files - Show new/modified/deleted files in last commit
+  lcf = "!git lf -1"
+
+  # Show new/modified/deleted files per commit
+  lf = log --decorate --numstat --pretty=format:'%C(bold cyan)%h%C(bold yellow)%d %C(bold white)%s %C(bold green)(%cr) %C(bold blue)%an'
 
 [push]
   default = simple
 
 [commit]
   gpgsign = true
+
+[commit]
+  gpgsign = true
+
+[diff]
+  tool = vimdiff
+
+[difftool]
+  prompt = false
+  trustExitCode = true
+
+[merge]
+  tool = vimdiff
+  conflictstyle = diff3
+
+[mergetool]
+  prompt = false
+
