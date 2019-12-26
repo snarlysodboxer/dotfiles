@@ -138,3 +138,5 @@ let g:NERDDefaultAlign = 'left'
 " \ 'watch_window_style': 'compact'
 " \ }
 
+let b:ale_linters = {'go': ['gobuild', 'gofmt', 'golangci_lint', 'golint', 'gopls', 'gotype', 'govet']}
+
