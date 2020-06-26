@@ -2,6 +2,14 @@
 
 cd $HOME/.dotfiles && git pull && cd
 
+# install stuff for NeoVim
+python -m ensurepip --user --default-pip
+python3 -m ensurepip --user --default-pip
+python -m pip install --user --upgrade pynvim
+python2 -m pip install --user --upgrade pynvim
+python3 -m pip install --user --upgrade pynvim
+npm install -g neovim
+
 mkdir -p $HOME/.config/nvim $HOME/.config/htop
 
 FILE_PATHS=`find $HOME/.dotfiles/linked -type f | cut -d '/' -f 6-`
