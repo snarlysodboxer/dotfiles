@@ -84,9 +84,9 @@ then
   echo "export HISTTIMEFORMAT='%F %T '" >> $PROFILE_FILE
 fi
 
-if ! grep -q "export PROMPT_COMMAND='history -a; history -c; reset_ssh'" $PROFILE_FILE
+if ! grep -q "export PROMPT_COMMAND='history -a; reset_ssh'" $PROFILE_FILE
 then
-  echo "export PROMPT_COMMAND='history -a; history -c; reset_ssh'" >> $PROFILE_FILE
+  echo "export PROMPT_COMMAND='history -a; reset_ssh'" >> $PROFILE_FILE
 fi
 
 if ! grep -q "export EDITOR=\$(which nvim)" $PROFILE_FILE
